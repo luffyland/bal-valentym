@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love ❤️</title>
+<title>Bal ❤️</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     height: 100vh;
     overflow: hidden;
@@ -16,26 +16,53 @@ body {
     align-items: center;
 }
 
-.card {
+/* iPhone Chat Style */
+.chat {
+    background: #f1f1f1;
+    width: 350px;
+    height: 550px;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 5px 0;
+    max-width: 70%;
+    font-size: 14px;
+}
+
+.left {
+    background: #e0e0e0;
+    align-self: flex-start;
+}
+
+.right {
+    background: #e91e63;
+    color: white;
+    align-self: flex-end;
+}
+
+.centerCard {
     background: white;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 2;
     max-width: 400px;
 }
 
-h1 { color: #e91e63; }
-
 button {
-    padding: 12px 20px;
+    padding: 10px 20px;
     margin: 10px;
-    font-size: 16px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 #yesBtn { background: #e91e63; color: white; }
@@ -43,7 +70,6 @@ button {
 
 .heart {
     position: absolute;
-    font-size: 20px;
     animation: float 5s linear infinite;
 }
 
@@ -51,122 +77,100 @@ button {
     0% { transform: translateY(100vh); opacity: 1; }
     100% { transform: translateY(-10vh); opacity: 0; }
 }
-
-.ticket {
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px dashed #e91e63;
-    border-radius: 15px;
-}
-
-#typewriter {
-    min-height: 60px;
-    font-style: italic;
-}
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
+<!-- Music -->
 <iframe width="0" height="0"
 src="https://www.youtube.com/embed/1vJ1L4j9XyI?autoplay=1&loop=1&playlist=1vJ1L4j9XyI"
 frameborder="0" allow="autoplay"></iframe>
 
-<div class="card" id="passwordPage">
-    <h1>🔐 Secret Access</h1>
-    <p>Enter our anniversary (MMDD) ❤️</p>
+<div class="centerCard" id="passwordPage">
+    <h2>🔐 Bal Mode Locked</h2>
+    <p>Enter our anniversary (MMDD)</p>
     <input type="password" id="passwordInput" placeholder="0320">
     <br>
-    <button onclick="checkPassword()">Unlock 💌</button>
+    <button onclick="checkPassword()">Unlock ❤️</button>
 </div>
 
 <script>
 
 function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
-    if(input === "0320") {
-        showMainPage();
+    if(document.getElementById("passwordInput").value === "0320"){
+        showIntro();
     } else {
-        alert("Wrong anniversary 😭 Try again baby ❤️");
+        alert("Wrong anniversary 😭 try again baby ❤️");
     }
 }
 
-function showMainPage() {
+function showIntro(){
     document.body.innerHTML = `
-    <div class="card">
-        <h1>Bal ❤️</h1>
-        <p id="typewriter"></p>
-        <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
-        <button id="noBtn" onmouseover="moveButton()">No 😢</button>
-    </div>
-    `;
-    typeWriter();
-    createHearts();
+    <div class="centerCard">
+        <h1>Bal Mode Activated ❤️</h1>
+        <p>Loading something special...</p>
+    </div>`;
+    setTimeout(showChat, 2000);
 }
 
-function typeWriter() {
-    const text = "Will you be my Valentine? I promise to love you louder, hug you tighter, and choose you every single day. ❤️";
-    let i = 0;
-    const speed = 50;
-    function typing() {
-        if (i < text.length) {
-            document.getElementById("typewriter").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typing, speed);
-        }
-    }
-    typing();
-}
-
-function yesClicked() {
+function showChat(){
     document.body.innerHTML = `
-    <div class="card">
-        <h1>YAYYYYY BAL SAID YES 😍❤️</h1>
-        <div class="ticket">
-            <h2>🎟 Valentine's Date Ticket 🎟</h2>
-            <p><strong>With:</strong> Bal 💕</p>
-            <p><strong>Date:</strong> February 14</p>
-            <p><strong>Dress Code:</strong> Cute as always 😌</p>
-            <p><strong>Valid Until:</strong> Forever ♾️</p>
+    <div class="chat">
+        <div class="message left">Hi Bal 🥰</div>
+        <div class="message right">Hmmmm what?</div>
+        <div class="message left">Can I ask you something important?</div>
+        <div class="message right">What is ittt 👀</div>
+        <div class="message left">Will you be my Valentine? ❤️</div>
+        <div style="text-align:center; margin-top:15px;">
+            <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+            <button id="noBtn" onmouseover="moveButton()">No 😢</button>
         </div>
-        <p>March 20 will always be special to me. Thank you for loving me. ❤️</p>
-    </div>
-    `;
+    </div>`;
     createHearts();
-    fireworks();
 }
 
-function moveButton() {
-    const button = document.getElementById("noBtn");
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    button.style.left = x + "px";
-    button.style.top = y + "px";
+function yesClicked(){
+    document.body.innerHTML = `
+    <div class="centerCard">
+        <h1>BAL SAID YES 😍❤️</h1>
+        <h3>🎟 Valentine's Date Ticket 🎟</h3>
+        <p><strong>Date:</strong> February 14</p>
+        <p><strong>With:</strong> Bal 💕</p>
+        <p><strong>Valid Until:</strong> Forever ♾️</p>
+        <p>March 20 will always be special to me ❤️</p>
+    </div>`;
+    confetti();
+    createHearts();
 }
 
-function createHearts() {
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+function moveButton(){
+    const btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * window.innerWidth + "px";
+    btn.style.top = Math.random() * window.innerHeight + "px";
+}
+
+function createHearts(){
+    setInterval(()=>{
+        let heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-    }, 300);
+        setTimeout(()=>heart.remove(),5000);
+    },300);
 }
 
-function fireworks() {
-    for (let i = 0; i < 50; i++) {
-        let spark = document.createElement("div");
-        spark.innerHTML = "✨";
-        spark.style.position = "absolute";
-        spark.style.left = Math.random() * 100 + "vw";
-        spark.style.top = Math.random() * 100 + "vh";
-        spark.style.fontSize = "20px";
-        document.body.appendChild(spark);
-        setTimeout(() => spark.remove(), 2000);
+function confetti(){
+    for(let i=0;i<100;i++){
+        let conf=document.createElement("div");
+        conf.innerHTML="🎊";
+        conf.style.position="absolute";
+        conf.style.left=Math.random()*100+"vw";
+        conf.style.top=Math.random()*100+"vh";
+        document.body.appendChild(conf);
+        setTimeout(()=>conf.remove(),3000);
     }
 }
 
